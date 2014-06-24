@@ -1,3 +1,8 @@
 <div class="panel-body">
-    
+    <div ng-repeat="line in lines">
+        <div ng-repeat="note in line">
+            <img src="img/{{note.file}}" class="img-responsive"></img>
+        </div>
+    </div>
+
 </div>

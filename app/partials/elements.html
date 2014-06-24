@@ -1,5 +1,5 @@
 <div class="panel-body">
-    <p ng-repeat="note in notes">
+    <p ng-repeat="note in notes" class="pointer" ng-click="addNote(note);">
         <img src="img/{{note.file}}" class="img-responsive"></img>
         <b>{{note.title}}</b>
     </p>
