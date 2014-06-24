@@ -1,2 +1,2 @@
-# Shakunote - Note editor for Shanuhachi based on angular-seed project
+# Shakunote - note editor for Shakuhachi based on angular-seed project
 
