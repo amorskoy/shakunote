@@ -16,15 +16,27 @@ angular.module('myApp.controllers', [])
         }
   
         var addNote = function(note){
-            if(note.name=='newline')
-                addLine();
-            
-            if(! $scope.lines.length)
-                addLine();
-            
-            var cnt = $scope.lines.length, line = $scope.lines[cnt-1];
-            
-            line.push( createItem(note) );
+            if( !$scope.context ){
+                /* When song note is not selected - add note*/
+                
+                if(note.name=='newline')
+                    addLine();
+
+                if(! $scope.lines.length)
+                    addLine();
+
+                var cnt = $scope.lines.length, line = $scope.lines[cnt-1];
+
+                line.push( createItem(note) );
+            }else{
+                /* When song note is selected - replace note */
+                
+                if(note.name!='newline'){
+                    $scope.context.name = note.name;
+                    $scope.context.file = note.file;
+                    $scope.context.selected = true;
+                }
+            }
         }
         
         var addLine = function(){
@@ -103,6 +115,7 @@ angular.module('myApp.controllers', [])
                 $scope.context = null;
             }
         }
+  
   
         $rootScope.$on('addNote', function(event, note) {
             addNote(note);
