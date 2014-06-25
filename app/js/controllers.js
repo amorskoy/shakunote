@@ -6,7 +6,7 @@ angular.module('myApp.controllers', [])
 
   .controller('SongCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
         $scope.lines = [];
-        $scope.songName = '11';
+        $scope.songName = '';
   
         var createItem = function(note){
             var file = (note.name=='newline') ? 'newline_note.png' : note.file;
