@@ -6,6 +6,7 @@ angular.module('myApp.controllers', [])
 
   .controller('SongCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
         $scope.lines = [];
+        $scope.songName = '11';
   
         var createItem = function(note){
             var file = (note.name=='newline') ? 'newline_note.png' : note.file;
@@ -30,6 +31,11 @@ angular.module('myApp.controllers', [])
         $scope.export = function(){
             var a, result = [];
             
+            if(!$scope.songName){
+                alert('Specify song name please');
+                return false;
+            }
+            
             angular.forEach($scope.lines, function(line){
                 angular.forEach(line, function(note){
                     result.push({name: note.name});
@@ -37,7 +43,7 @@ angular.module('myApp.controllers', [])
             });
             
             a = document.createElement('a');
-            a.download = "song.json";
+            a.download = $scope.songName + ".json";
             a.href = window.URL.createObjectURL( 
                 new Blob([ angular.toJson(result, true) ], 
                 { type : 'application/json' })

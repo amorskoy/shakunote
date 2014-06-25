@@ -20,7 +20,13 @@
     <div class="row">
         <div ng-controller="SongCtrl" class="col-md-8">
             <div>
-                <button type="button" class="btn btn-success" ng-click="export()">Save</button>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="songName">Song name</label>
+                        <input type="text" class="form-control" id="songName" placeholder="Song name" ng-model="songName"/>
+                    </div>
+                    <button type="button" class="btn btn-success" ng-click="export()">Save</button>
+                </form>
             </div>
             
             <div class="panel panel-primary">
