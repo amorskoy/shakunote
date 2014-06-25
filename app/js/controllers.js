@@ -29,7 +29,7 @@ angular.module('myApp.controllers', [])
         
         /* Export song into json file */
         $scope.export = function(){
-            var a, result = [];
+            var a, result = {notes: []};
             
             if(!$scope.songName){
                 alert('Specify song name please');
@@ -38,7 +38,7 @@ angular.module('myApp.controllers', [])
             
             angular.forEach($scope.lines, function(line){
                 angular.forEach(line, function(note){
-                    result.push({name: note.name});
+                    result.notes.push({name: note.name});
                 });
             });
             
@@ -51,6 +51,11 @@ angular.module('myApp.controllers', [])
             
             a.textContent = "Download " + a.download;
             a.click();
+        }
+        
+        /* Import song from json file */
+        $scope.import = function(){
+            
         }
   
         $rootScope.$on('addNote', function(event, note) {
