@@ -18,14 +18,20 @@
     </head>
     <body>
     <div class="row">
-        <div ng-controller="SongCtrl" class="col-md-8 panel panel-primary">
-            <div class="panel-heading"><b>This is your song</b></div>
-            <div ng-include="'partials/song.html'"></div>
+        <div ng-controller="SongCtrl" class="col-md-8">
+            <div>
+                <button type="button" class="btn btn-success" ng-click="export()">Save</button>
+            </div>
+            
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4><b>This is your song</b></h4></div>
+                <div ng-include="'partials/song.html'"></div>
+            </div>
         </div>
         <div class="col-md-1"></div>
 
         <div ng-controller="ElementsCtrl" class="col-md-3 panel panel-success">
-            <div class="panel-heading"><b>Elements</b></div>
+            <div class="panel-heading"><h4><b>Elements</b></h4></div>
             <div ng-include="'partials/elements.html'"></div>
         </div>
     </div>

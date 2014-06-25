@@ -8,7 +8,9 @@ angular.module('myApp.controllers', [])
         $scope.lines = [];
   
         var createItem = function(note){
-            return {name:note.name, file:note.file};
+            var file = (note.name=='newline') ? 'newline_note.png' : note.file;
+            
+            return {name:note.name, file:file};
         }
   
         var addNote = function(note){
@@ -23,12 +25,25 @@ angular.module('myApp.controllers', [])
         var addLine = function(){
             $scope.lines.push([]);
         }
+        
+        /* Export song into json file */
+        $scope.export = function(){
+            var result = [];
+            
+            angular.forEach($scope.lines, function(line){
+                angular.forEach(line, function(note){
+                    result.push({name: note.name});
+                });
+            });
+            
+            console.log(result);
+        }
   
         $rootScope.$on('addNote', function(event, note) {
             if(note.name=='newline')
                 addLine();
-            else
-                addNote(note);
+            
+            addNote(note);
         });
   }])
   
