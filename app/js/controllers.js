@@ -7,6 +7,7 @@ angular.module('myApp.controllers', [])
   .controller('SongCtrl', ['$scope', '$rootScope','notesService', function($scope, $rootScope, notesService) {
         $scope.lines = [];
         $scope.songName = '';
+        $scope.context = null;
   
         var createItem = function(note){
             var file = (note.name=='newline') ? 'newline_note.png' : note.file;
@@ -88,6 +89,15 @@ angular.module('myApp.controllers', [])
                 addNote(note);
             });
             
+        }
+        
+        /* Select note */
+        $scope.selectNote = function(note){
+            if($scope.context && $scope.context.selected)
+                $scope.context.selected = false;
+            
+            $scope.context = note;
+            $scope.context.selected = true;
         }
   
         $rootScope.$on('addNote', function(event, note) {

@@ -40,3 +40,8 @@
 .mb30 {
     margin-bottom: 30px;
 }
+
+.selectedNote {
+    border: 1px solid;
+    border-color: red;
+}

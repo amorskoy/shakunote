@@ -1,7 +1,9 @@
 <div class="panel-body">
     <div ng-repeat="line in lines" class="pull-right mb30">
         <div ng-repeat="note in line">
-            <img src="img/{{note.file}}" class="img-responsive"></img>
+            <img src="img/{{note.file}}" class="img-responsive pointer" 
+                 ng-class="{selectedNote: note.selected}"
+                 ng-click="selectNote(note);"></img>
         </div>
     </div>
 </div>
