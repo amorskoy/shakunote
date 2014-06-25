@@ -92,12 +92,16 @@ angular.module('myApp.controllers', [])
         }
         
         /* Select note */
-        $scope.selectNote = function(note){
+        $scope.toggleNote = function(note){
             if($scope.context && $scope.context.selected)
                 $scope.context.selected = false;
-            
-            $scope.context = note;
-            $scope.context.selected = true;
+
+            if( $scope.context!=note ){
+                $scope.context = note;
+                $scope.context.selected = true;
+            }else{
+                $scope.context = null;
+            }
         }
   
         $rootScope.$on('addNote', function(event, note) {
