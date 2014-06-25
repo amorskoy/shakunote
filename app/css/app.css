@@ -32,3 +32,11 @@
 .pointer {
     cursor: pointer;
 }
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}

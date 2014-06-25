@@ -4,7 +4,7 @@
 
 angular.module('myApp.controllers', [])
 
-  .controller('SongCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+  .controller('SongCtrl', ['$scope', '$rootScope','notesService', function($scope, $rootScope, notesService) {
         $scope.lines = [];
         $scope.songName = '';
   
@@ -15,6 +15,9 @@ angular.module('myApp.controllers', [])
         }
   
         var addNote = function(note){
+            if(note.name=='newline')
+                addLine();
+            
             if(! $scope.lines.length)
                 addLine();
             
@@ -25,6 +28,10 @@ angular.module('myApp.controllers', [])
         
         var addLine = function(){
             $scope.lines.push([]);
+        }
+        
+        var clearSong = function(){
+            $scope.lines = [];
         }
         
         /* Export song into json file */
@@ -54,35 +61,42 @@ angular.module('myApp.controllers', [])
         }
         
         /* Import song from json file */
-        $scope.import = function(){
+        $scope.import = function($fileContent){
+            clearSong();
+            var json;
+            
+            try {
+                json = angular.fromJson($fileContent);
+                
+                if( !json || !json.notes )
+                    throw 'Invalid file';
+            }catch(e){
+                alert('Invalid file');
+                
+                return false;
+            }
+            
+            angular.forEach(json.notes, function(item){
+                var note = notesService.getNote(item.name);
+                
+                if(!note){
+                    alert('Wrong item');
+                    
+                    return false;
+                }
+                
+                addNote(note);
+            });
             
         }
   
         $rootScope.$on('addNote', function(event, note) {
-            if(note.name=='newline')
-                addLine();
-            
             addNote(note);
         });
   }])
   
-  .controller('ElementsCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-          $scope.notes = [
-              {name: 'pre_meri', title: 'Pre meri', file: 'pre meri.png'}
-              ,{name: 'newline', title: 'Newline', file: 'new line.png'}
-              ,{name: 'accent', title: 'Accent', file: 'accent.png'}
-              ,{name: 'beat', title: 'Beat', file: 'beat.png'}
-              ,{name: 'bar', title: 'Bar', file: 'bar.png'}
-              ,{name: 'ro_meri', title: 'RO meri', file: 'ro meri.png'}
-              ,{name: 'ro', title: 'RO', file: 'ro.png'}
-              ,{name: 'tsu_meri', title: 'TSU meri', file: 'tsu meri.png'}
-              ,{name: 'tsu', title: 'TSU', file: 'tsu.png'}
-              ,{name: 're', title: 'RE', file: 're.png'}
-              ,{name: 'u_meri', title: 'U meri', file: 'u meri.png'}
-              ,{name: 'u', title: 'U', file: 'u.png'}
-              ,{name: 'ha', title: 'HA', file: 'ha.png'}
-              ,{name: 'hi', title: 'HI', file: 'hi.png'}
-          ];
+  .controller('ElementsCtrl', ['$scope', '$rootScope', 'notesService', function($scope, $rootScope, notesService) {
+          $scope.notes = notesService.getNotesElements();
           
           $scope.addNote = function(note){
               $rootScope.$broadcast('addNote', note);
