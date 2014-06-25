@@ -34,7 +34,12 @@ angular.module('myApp.controllers', [])
   
   .controller('ElementsCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
           $scope.notes = [
-              {name: 'ro_meri', title: 'RO meri', file: 'ro meri.png'}
+              {name: 'pre_meri', title: 'Pre meri', file: 'pre meri.png'}
+              ,{name: 'newline', title: 'Newline', file: 'new line.png'}
+              ,{name: 'accent', title: 'Accent', file: 'accent.png'}
+              ,{name: 'beat', title: 'Beat', file: 'beat.png'}
+              ,{name: 'bar', title: 'Bar', file: 'bar.png'}
+              ,{name: 'ro_meri', title: 'RO meri', file: 'ro meri.png'}
               ,{name: 'ro', title: 'RO', file: 'ro.png'}
               ,{name: 'tsu_meri', title: 'TSU meri', file: 'tsu meri.png'}
               ,{name: 'tsu', title: 'TSU', file: 'tsu.png'}
@@ -43,11 +48,6 @@ angular.module('myApp.controllers', [])
               ,{name: 'u', title: 'U', file: 'u.png'}
               ,{name: 'ha', title: 'HA', file: 'ha.png'}
               ,{name: 'hi', title: 'HI', file: 'hi.png'}
-              ,{name: 'pre_meri', title: 'Pre meri', file: 'pre meri.png'}
-              ,{name: 'newline', title: 'Newline', file: 'new line.png'}
-              ,{name: 'accent', title: 'Accent', file: 'accent.png'}
-              ,{name: 'beat', title: 'Beat', file: 'beat.png'}
-              ,{name: 'bar', title: 'Bar', file: 'bar.png'}
           ];
           
           $scope.addNote = function(note){

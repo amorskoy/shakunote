@@ -1,6 +1,6 @@
-<div class="panel-body">
-    <p ng-repeat="note in notes" class="pointer" ng-click="addNote(note);">
-        <img src="img/{{note.file}}" class="img-responsive"></img>
-        <b>{{note.title}}</b>
-    </p>
+<div class="panel-body row">
+    <div ng-repeat="note in notes" class="pointer col-md-3" ng-click="addNote(note);">
+            <img src="img/{{note.file}}" class="img-responsive"/>
+            <span><b>{{note.title}}</b></span>
+    </div>
 </div>
