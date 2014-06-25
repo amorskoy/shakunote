@@ -28,7 +28,7 @@ angular.module('myApp.controllers', [])
         
         /* Export song into json file */
         $scope.export = function(){
-            var result = [];
+            var a, result = [];
             
             angular.forEach($scope.lines, function(line){
                 angular.forEach(line, function(note){
@@ -36,7 +36,15 @@ angular.module('myApp.controllers', [])
                 });
             });
             
-            console.log(result);
+            a = document.createElement('a');
+            a.download = "song.json";
+            a.href = window.URL.createObjectURL( 
+                new Blob([ angular.toJson(result, true) ], 
+                { type : 'application/json' })
+            );
+            
+            a.textContent = "Download " + a.download;
+            a.click();
         }
   
         $rootScope.$on('addNote', function(event, note) {
