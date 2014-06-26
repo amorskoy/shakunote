@@ -44,6 +44,11 @@
                 <div class="panel-heading"><h4><b>This is your song <i><span ng-bind="songName"></span></i></b></h4></div>
                 <div ng-include="'partials/song.html'"></div>
             </div>
+            
+            <!-- Context menu for note -->
+            <ul id="contextSong" class="dropdown-menu">
+                <li><a ng-click="removeNote()" class="pointer">Remove</a></li>
+            </ul>
         </div>
         
         <div class="col-md-1"></div>
@@ -59,6 +64,7 @@
         </div>
     </div>
 
+        
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>

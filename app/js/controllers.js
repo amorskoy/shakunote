@@ -61,7 +61,8 @@ angular.module('myApp.controllers', [])
             
             angular.forEach($scope.lines, function(line){
                 angular.forEach(line, function(note){
-                    result.notes.push({name: note.name});
+                    if(!note.deleted)
+                        result.notes.push({name: note.name});
                 });
             });
             
@@ -114,7 +115,7 @@ angular.module('myApp.controllers', [])
             if($scope.context && $scope.context.selected)
                 $scope.context.selected = false;
 
-            if( $scope.context!=note ){
+            if( $scope.context !== note ){
                 $scope.context = note;
                 $scope.context.selected = true;
             }else{
@@ -126,7 +127,16 @@ angular.module('myApp.controllers', [])
         $scope.clearUpload = function($event){
             $event.currentTarget.value = null;
         }
-  
+        
+        /* Remove note from song */
+        $scope.removeNote = function(){
+            if(!$scope.context)
+               return;
+           
+            $scope.context.deleted = true;
+            $scope.context.selected = false;
+            $scope.context = null;
+        }
   
         $rootScope.$on('addNote', function(event, note) {
             addNote(note);
