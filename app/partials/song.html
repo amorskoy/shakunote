@@ -2,7 +2,7 @@
     <div ng-repeat="line in lines" class="pull-right mb30 mr30" ng-class="{selectedLine: line.selected}">
         <span context="contextLine" ng-click="toggleLine(line);"
             ng-click="toggleLine(line);"
-            class="badge alert-success pointer">{{$index+1}}</span>
+            class="label label-default pointer col-md-12">{{$index+1}}</span>
             
         <div ng-repeat="note in line.notes">
             <img src="img/{{note.file}}"
