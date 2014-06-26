@@ -49,12 +49,14 @@ angular.module('myApp.controllers', [])
         
         /* Export song into json file */
         $scope.export = function(){
-            var a, result = {notes: []};
+            var a, result = {songName:'', notes: []};
             
             if(!$scope.songName){
                 alert('Specify song name please');
                 return false;
             }
+            
+            result.songName = $scope.songName;
             
             angular.forEach($scope.lines, function(line){
                 angular.forEach(line, function(note){
@@ -100,6 +102,9 @@ angular.module('myApp.controllers', [])
                 
                 addNote(note);
             });
+            
+            if( json.songName != undefined )
+                $scope.songName = json.songName;
             
         }
         
