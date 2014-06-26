@@ -54,7 +54,7 @@ body > div > div {
     margin-bottom: 30px;
 }
 
-.selectedNote {
-    border: 1px solid;
-    border-color: red;
+.selectedNote, .selectedLine {
+    outline: 1px solid;
+    outline-color: red;
 }

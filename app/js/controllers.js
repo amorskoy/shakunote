@@ -7,8 +7,8 @@ angular.module('myApp.controllers', [])
   .controller('SongCtrl', ['$scope', '$rootScope','notesService', function($scope, $rootScope, notesService) {
         $scope.lines = [];
         $scope.songName = '';
-        $scope.songFile = null;
         $scope.context = null;
+        $scope.contextLine = null;
   
         var createItem = function(note){
             var file = (note.name=='newline') ? 'newline_note.png' : note.file;
@@ -28,7 +28,7 @@ angular.module('myApp.controllers', [])
 
                 var cnt = $scope.lines.length, line = $scope.lines[cnt-1];
 
-                line.push( createItem(note) );
+                line.notes.push( createItem(note) );
             }else{
                 /* When song note is selected - replace note */
                 
@@ -41,7 +41,7 @@ angular.module('myApp.controllers', [])
         }
         
         var addLine = function(){
-            $scope.lines.push([]);
+            $scope.lines.push({notes:[]});
         }
         
         var clearSong = function(){
@@ -123,9 +123,32 @@ angular.module('myApp.controllers', [])
             }
         }
         
+        /* Select line */
+        $scope.toggleLine = function(line){
+            if($scope.contextLine && $scope.contextLine.selected)
+                $scope.contextLine.selected = false;
+
+            if( $scope.contextLine !== line ){
+                $scope.contextLine = line;
+                $scope.contextLine.selected = true;
+            }else{
+                $scope.contextLine = null;
+            }
+        }
+        
         /* Clear previous song file uploaded */
         $scope.clearUpload = function($event){
             $event.currentTarget.value = null;
+        }
+        
+        /* Remove whoole line from song */
+        $scope.removeLine = function(){
+            if( $scope.contextLine ){
+                var idx = $scope.lines.indexOf( $scope.contextLine );
+                
+                if(idx >= 0)
+                    $scope.lines.splice( idx, 1 );
+            }
         }
         
         /* Remove note from song */
