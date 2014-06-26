@@ -19,6 +19,7 @@
     <body>
     <div class="row">
         <div ng-controller="SongCtrl" class="col-md-8">
+            <!-- Song properties -->
             <div class="mb10">
                 <form class="form-inline row" role="form">
                     <div class="form-group col-md-2">
@@ -29,23 +30,32 @@
                         <button type="button" class="btn btn-success" ng-click="export()">Save</button>
                     </div>
                     <div class="form-group col-md-1">
-                        <input type="file" on-read-file="import($fileContent)" class="form-control filestyle" 
+                        <input type="file" on-read-file="import($fileContent, $event);" 
+                               ng-click="clearUpload($event);"
+                               class="form-control filestyle" 
                                data-buttonText="Load ..." data-buttonName="btn-warning" 
                                data-buttonBefore="true" data-input="false"/>
                     </div>
                 </form>
             </div>
             
+            <!-- Song -->
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4><b>This is your song <i><span ng-bind="songName"></span></i></b></h4></div>
                 <div ng-include="'partials/song.html'"></div>
             </div>
         </div>
+        
         <div class="col-md-1"></div>
 
-        <div ng-controller="ElementsCtrl" class="col-md-3 panel panel-success">
-            <div class="panel-heading"><h4><b>Elements</b></h4></div>
-            <div ng-include="'partials/elements.html'"></div>
+        <!-- Elements -->
+        <div class="col-md-3">
+            <div class="mb10">&nbsp;</div>
+            
+            <div ng-controller="ElementsCtrl" class="panel panel-success">
+                <div class="panel-heading"><h4><b>Elements</b></h4></div>
+                <div ng-include="'partials/elements.html'"></div>
+            </div>
         </div>
     </div>
 

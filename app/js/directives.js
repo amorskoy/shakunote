@@ -26,7 +26,10 @@ angular.module('myApp.directives', []).
                                     });
                             };
 
-                            reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+                            var file = (onChangeEvent.srcElement || onChangeEvent.target).files[0];
+                            
+                            if(file)
+                                reader.readAsText(file);
                     });
                 }
         };

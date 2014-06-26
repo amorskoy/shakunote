@@ -7,6 +7,7 @@ angular.module('myApp.controllers', [])
   .controller('SongCtrl', ['$scope', '$rootScope','notesService', function($scope, $rootScope, notesService) {
         $scope.lines = [];
         $scope.songName = '';
+        $scope.songFile = null;
         $scope.context = null;
   
         var createItem = function(note){
@@ -119,6 +120,11 @@ angular.module('myApp.controllers', [])
             }else{
                 $scope.context = null;
             }
+        }
+        
+        /* Clear previous song file uploaded */
+        $scope.clearUpload = function($event){
+            $event.currentTarget.value = null;
         }
   
   
