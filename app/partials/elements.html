@@ -1,5 +1,5 @@
 <div class="panel-body row">
-    <div ng-repeat="note in notes" class="pointer col-md-3" ng-click="addNote(note);">
+    <div ng-repeat="note in notes" class="pointer col-md-3" ng-click="addNote(note);" draggable item="note" id="{{note.name}}">
         <img src="img/{{note.file}}" class="img-responsive"/>
             <span><b>{{note.title}}</b></span>
     </div>

@@ -1,14 +1,16 @@
 <div class="panel-body">
     <div ng-repeat="line in lines" class="pull-right mb30 mr30" ng-class="{selectedLine: line.selected}">
+        
         <span context="contextLine" ng-click="toggleLine(line);"
             ng-click="toggleLine(line);"
             class="label label-default pointer col-md-12">{{$index+1}}</span>
             
-        <div ng-repeat="note in line.notes">
+        <div ng-repeat="note in line.notes" droppable drop="handleDropNote" id="{{note.id}}">
+            
             <img src="img/{{note.file}}"
                  context="contextSong" class="img-responsive pointer" 
                  ng-class="{selectedNote: note.selected, hide: note.deleted}"
-                 ng-click="toggleNote(note);"></img>
+                 ng-click="toggleNote(note);">
         </div>
     </div>
 </div>

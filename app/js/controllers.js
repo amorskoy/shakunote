@@ -9,15 +9,19 @@ angular.module('myApp.controllers', [])
         $scope.songName = '';
         $scope.context = null;
         $scope.contextLine = null;
+        
+        var noteCounter = 0; //local note counter auto_increment for id generation
   
         var createItem = function(note){
             var file = (note.name=='newline') ? 'newline_note.png' : note.file;
             
-            return {name:note.name, file:file};
+            return {name:note.name, file:file, id: noteCounter};
         }
   
-        var addNote = function(note){
+        var pushNote = function(note){
             if( !$scope.context ){
+                noteCounter++;
+                
                 /* When song note is not selected - add note*/
                 
                 if(note.name=='newline')
@@ -40,12 +44,35 @@ angular.module('myApp.controllers', [])
             }
         }
         
+        var insertNote = function(name, line, num){
+            noteCounter++;
+            
+            var note = notesService.getNote(name)
+                , item = createItem(note), arr = $scope.lines[line].notes;
+            
+            if(arr.length == num+1)
+                arr.push(item);
+            else
+                arr.splice(num+1, 0, item);
+        }
+        
         var addLine = function(){
             $scope.lines.push({notes:[]});
         }
         
         var clearSong = function(){
             $scope.lines = [];
+        }
+        
+        var parseNoteId = function(id){
+            for( var l in $scope.lines ){
+                for( var n in $scope.lines[l].notes ){
+                   if($scope.lines[l].notes[n].id == id)
+                       break;
+                }
+            }
+            
+            return {line: parseInt(l), num: parseInt(n)};
         }
         
         /* Export song into json file */
@@ -60,7 +87,7 @@ angular.module('myApp.controllers', [])
             result.songName = $scope.songName;
             
             angular.forEach($scope.lines, function(line){
-                angular.forEach(line, function(note){
+                angular.forEach(line.notes, function(note){
                     if(!note.deleted)
                         result.notes.push({name: note.name});
                 });
@@ -102,7 +129,7 @@ angular.module('myApp.controllers', [])
                     return false;
                 }
                 
-                addNote(note);
+                pushNote(note);
             });
             
             if( json.songName != undefined )
@@ -147,7 +174,7 @@ angular.module('myApp.controllers', [])
                 var idx = $scope.lines.indexOf( $scope.contextLine );
                 
                 if(idx >= 0)
-                    $scope.lines.splice( idx, 1 );
+                    $scope.lines.splice(idx, 1);
             }
         }
         
@@ -155,14 +182,34 @@ angular.module('myApp.controllers', [])
         $scope.removeNote = function(){
             if(!$scope.context)
                return;
+            
+            var found = false;
+            
+            angular.forEach($scope.lines, function(line){
+                if(!found){
+                    var idx = line.notes.indexOf( $scope.context );
+
+                    if( idx >= 0 ){
+                        line.notes.splice(idx, 1);
+                        found = true;
+                    }
+                }
+            });
            
-            $scope.context.deleted = true;
-            $scope.context.selected = false;
             $scope.context = null;
         }
+        
+        /* Handle drop element into song */
   
+        $scope.handleDropNote = function(noteName, targetId) {
+            var posInfo = parseNoteId(targetId);
+            
+            insertNote(noteName, posInfo.line, posInfo.num);
+        }
+        
+        /* Event: when song element is added */
         $rootScope.$on('addNote', function(event, note) {
-            addNote(note);
+            pushNote(note);
         });
   }])
   
