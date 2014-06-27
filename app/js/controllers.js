@@ -207,6 +207,22 @@ angular.module('myApp.controllers', [])
             insertNote(noteName, posInfo.line, posInfo.num);
         }
         
+        /* Export song to PDF */
+        
+        $scope.toImage = function(){
+            html2canvas(document.getElementById('editor'), {
+                  onrendered: function(canvas) {
+                    var a = document.createElement('a');
+                    a.download = $scope.songName + ".png";
+                    a.href = canvas.toDataURL();
+
+                    a.textContent = "Download " + a.download;
+                    a.click();
+                      
+                  }
+            });
+        }
+        
         /* Event: when song element is added */
         $rootScope.$on('addNote', function(event, note) {
             pushNote(note);
