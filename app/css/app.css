@@ -64,6 +64,7 @@ body > div > div {
 }
 
 .over {
-    outline: 1px solid;
-    outline-color: #419641;
+    border: 1px solid;
+    border-color: #419641 #419641 red #419641;
+    border-bottom-width: 3px;
 }
