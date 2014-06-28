@@ -67,7 +67,8 @@
         
         <!-- Fingering -->
         <div class="col-md-1" ng-controller="FingeringCtrl">
-            <img ng-if="contextImg" src="img/{{contextImg}}"/>
+            <img ng-if="context.fingering" src="img/{{context.fingering}}"/>
+            <p ng-if="context.fingering"><b>{{context.title}}</b><p>
         </div>
 
         <!-- Elements -->

@@ -245,14 +245,14 @@ angular.module('myApp.controllers', [])
         }  
   }])
 
-  .controller('FingeringCtrl', ['$scope', '$rootScope', 'notesService', function($scope, $rootScope, notesService) {
-        $scope.contextImg = false;
+  .controller('FingeringCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+        $scope.context = false;
 
         $rootScope.$on('enterElement', function(event, note) {
-            $scope.contextImg = note.fingering;
+            $scope.context = note;
         });
         
         $rootScope.$on('leaveElement', function(event, note) {
-            $scope.contextImg = false;
+            $scope.context = false;
         });
   }]);
