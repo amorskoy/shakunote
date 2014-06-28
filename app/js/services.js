@@ -12,6 +12,7 @@ angular.module('myApp.services', [])
                 ,beat: {name: 'beat', title: 'Beat', file: 'beat.png'}
                 ,bar: {name: 'bar', title: 'Bar', file: 'bar.png'}
                 ,ro_meri: {name: 'ro_meri', title: 'RO meri', file: 'ro meri.png'}
+                ,ro_dai_meri: {name: 'ro_dai_meri', title: 'RO dai meri', file: 'ro dai meri.png'}
                 ,ro: {name: 'ro', title: 'RO', file: 'ro.png'}
                 ,tsu_meri: {name: 'tsu_meri', title: 'TSU meri', file: 'tsu meri.png'}
                 ,tsu: {name: 'tsu', title: 'TSU', file: 'tsu.png'}
