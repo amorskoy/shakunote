@@ -14,6 +14,7 @@ angular.module('myApp.services', [])
                 ,ro_meri: {name: 'ro_meri', title: 'RO meri', file: 'ro meri.png'}
                 ,ro_dai_meri: {name: 'ro_dai_meri', title: 'RO dai meri', file: 'ro dai meri.png'}
                 ,ro: {name: 'ro', title: 'RO', file: 'ro.png'}
+                ,tsu_chu_meri: {name: 'tsu_chu_meri', title: 'TSU chu meri', file: 'tsu chu meri.png'}
                 ,tsu_meri: {name: 'tsu_meri', title: 'TSU meri', file: 'tsu meri.png'}
                 ,tsu: {name: 'tsu', title: 'TSU', file: 'tsu.png'}
                 ,re: {name: 're', title: 'RE', file: 're.png'}

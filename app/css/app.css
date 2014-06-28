@@ -68,3 +68,7 @@ body > div > div {
     border-color: #419641 #419641 red #419641;
     border-bottom-width: 3px;
 }
+
+.element {
+    height: 64px;
+}
