@@ -21,6 +21,8 @@ angular.module('myApp.services', [])
                 ,u_meri: {name: 'u_meri', title: 'U meri', file: 'u meri.png'}
                 ,u: {name: 'u', title: 'U', file: 'u.png'}
                 ,ha: {name: 'ha', title: 'HA', file: 'ha.png'}
+                ,ha_meri: {name: 'ha_meri', title: 'HA meri', file: 'ha meri.png'}
+                ,ha_chu_meri: {name: 'ha_chu_meri', title: 'HA chu meri', file: 'ha chu meri.png'}
                 ,hi: {name: 'hi', title: 'HI', file: 'hi.png'}
             };
 
