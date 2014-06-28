@@ -65,7 +65,10 @@
             </ul>
         </div>
         
-        <div class="col-md-1"></div>
+        <!-- Fingering -->
+        <div class="col-md-1" ng-controller="FingeringCtrl">
+            <img ng-if="contextImg" src="img/{{contextImg}}"/>
+        </div>
 
         <!-- Elements -->
         <div class="col-md-3">

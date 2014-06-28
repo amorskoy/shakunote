@@ -222,7 +222,7 @@ angular.module('myApp.controllers', [])
                   }
             });
         }
-        
+     
         /* Event: when song element is added */
         $rootScope.$on('addNote', function(event, note) {
             pushNote(note);
@@ -230,9 +230,29 @@ angular.module('myApp.controllers', [])
   }])
   
   .controller('ElementsCtrl', ['$scope', '$rootScope', 'notesService', function($scope, $rootScope, notesService) {
-          $scope.notes = notesService.getNotesElements();
-          
-          $scope.addNote = function(note){
-              $rootScope.$broadcast('addNote', note);
-          }
+        $scope.notes = notesService.getNotesElements();
+
+        $scope.addNote = function(note){
+            $rootScope.$broadcast('addNote', note);
+        }
+
+        $scope.enterElement = function(el){
+            $rootScope.$broadcast('enterElement', el);
+        }  
+
+        $scope.leaveElement = function(el){
+            $rootScope.$broadcast('leaveElement', el);
+        }  
+  }])
+
+  .controller('FingeringCtrl', ['$scope', '$rootScope', 'notesService', function($scope, $rootScope, notesService) {
+        $scope.contextImg = false;
+
+        $rootScope.$on('enterElement', function(event, note) {
+            $scope.contextImg = note.fingering;
+        });
+        
+        $rootScope.$on('leaveElement', function(event, note) {
+            $scope.contextImg = false;
+        });
   }]);
