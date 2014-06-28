@@ -10,6 +10,7 @@ angular.module('myApp.services', [])
                 ,newline: {name: 'newline', title: 'Newline', file: 'new line.png'}
                 ,accent: {name: 'accent', title: 'Accent', file: 'accent.png'}
                 ,beat: {name: 'beat', title: 'Beat', file: 'beat.png'}
+                ,pause: {name: 'pause', title: 'Pause', file: 'pause.png'}
                 ,bar: {name: 'bar', title: 'Bar', file: 'bar.png'}
                 ,ro_meri: {name: 'ro_meri', title: 'RO meri', file: 'ro meri.png', fingering: 'app ro meri.png'}
                 ,ro_dai_meri: {name: 'ro_dai_meri', title: 'RO dai meri', file: 'ro dai meri.png', fingering: 'app ro dai meri.png'}

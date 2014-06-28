@@ -1,6 +1,9 @@
 <div class="panel-body">
+    <div class="col-md-12">
+        <h2><b><span ng-bind="songName"></span></b></h2>
+    </div>
+    
     <div ng-repeat="line in lines" class="pull-right mb30 mr30" ng-class="{selectedLine: line.selected}">
-        
         <span context="contextLine" ng-click="toggleLine(line);"
             class="label label-default pointer col-md-12">{{$index+1}}</span>
             
