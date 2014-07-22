@@ -207,8 +207,7 @@ angular.module('myApp.controllers', [])
             insertNote(noteName, posInfo.line, posInfo.num);
         }
         
-        /* Export song to PDF */
-        
+        /* Export song to image */
         $scope.toImage = function(){
             html2canvas(document.getElementById('editor'), {
                   onrendered: function(canvas) {
@@ -218,7 +217,6 @@ angular.module('myApp.controllers', [])
 
                     a.textContent = "Download " + a.download;
                     a.click();
-                      
                   }
             });
         }
