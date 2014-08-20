@@ -5,6 +5,9 @@
   "description": "Shakunote - note editor for Shakuhachi",
   "repository": "https://github.com/amorskoy/shakunote",
   "license": "MIT",
+  "engines": {
+    "node": "0.10.x"
+  },
   "devDependencies": {
     "karma": "~0.10",
     "protractor": "~0.20.1",
