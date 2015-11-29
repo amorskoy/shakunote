@@ -68,11 +68,11 @@ angular.module('myApp.controllers', [])
             for( var l in $scope.lines ){
                 for( var n in $scope.lines[l].notes ){
                    if($scope.lines[l].notes[n].id == id)
-                       break;
+                    return {line: parseInt(l), num: parseInt(n)};
                 }
             }
             
-            return {line: parseInt(l), num: parseInt(n)};
+            return false;
         }
         
         /* Export song into json file */
@@ -204,7 +204,8 @@ angular.module('myApp.controllers', [])
         $scope.handleDropNote = function(noteName, targetId) {
             var posInfo = parseNoteId(targetId);
             
-            insertNote(noteName, posInfo.line, posInfo.num);
+            if(posInfo)
+                insertNote(noteName, posInfo.line, posInfo.num);
         }
         
         /* Export song to image */
